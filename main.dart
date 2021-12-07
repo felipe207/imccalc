@@ -39,11 +39,13 @@ class TelaPrincipal extends StatefulWidget {
 }
 
 class _TelaPrincipalState extends State<TelaPrincipal> {
+  Sexo sexoSelecionado = Sexo.masculino;
+
   //como essa é uma classe estate não precisamos colocar o final
-  Color corMasculinoCartaoPadrao = corInativaCartaoPadrao;
+  /* Color corMasculinoCartaoPadrao = corInativaCartaoPadrao;
   Color corFemininoCartaoPadrao = corInativaCartaoPadrao;
 
-//1 = MASCULINO, 2 = FEMININO
+
   void atualizarCor(Sexo sexoSelecionado) {
     if (sexoSelecionado == Sexo.masculino) {
       if (corMasculinoCartaoPadrao == corInativaCartaoPadrao) {
@@ -62,7 +64,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
         corFemininoCartaoPadrao = corInativaCartaoPadrao;
       }
     }
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -79,11 +81,13 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        atualizarCor(Sexo.masculino);
+                        sexoSelecionado = Sexo.masculino;
                       });
                     },
                     child: CartaoPadrao(
-                      cor: corMasculinoCartaoPadrao,
+                      cor: sexoSelecionado == Sexo.masculino
+                          ? corAtivaCartaoPadrao
+                          : corInativaCartaoPadrao,
                       filhoCartao: ConteudoIcone(
                         icone: FontAwesomeIcons.mars,
                         descricao: 'MASCULINO',
@@ -95,11 +99,13 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        atualizarCor(Sexo.feminino);
+                        sexoSelecionado = Sexo.feminino;
                       });
                     },
                     child: CartaoPadrao(
-                      cor: corFemininoCartaoPadrao,
+                      cor: sexoSelecionado == Sexo.feminino
+                          ? corAtivaCartaoPadrao
+                          : corInativaCartaoPadrao,
                       filhoCartao: ConteudoIcone(
                         icone: FontAwesomeIcons.venus,
                         descricao: 'FEMININO',
