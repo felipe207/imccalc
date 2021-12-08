@@ -15,7 +15,7 @@ class CartaoPadrao extends StatelessWidget {
       onTap: aoPressionar,
       child: Container(
         child: filhoCartao,
-        margin: EdgeInsets.all(20.0),
+        margin: EdgeInsets.all(10.0),
         decoration: BoxDecoration(
           color: cor,
           borderRadius: BorderRadius.circular(10.0),

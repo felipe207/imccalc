@@ -37,6 +37,8 @@ class TelaPrincipal extends StatefulWidget {
 class _TelaPrincipalState extends State<TelaPrincipal> {
   Sexo sexoSelecionado = Sexo.masculino;
   int altura = 180;
+  int peso = 60;
+  int idade = 24;
 
   @override
   Widget build(BuildContext context) {
@@ -127,18 +129,81 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
               children: [
                 Expanded(
                   child: CartaoPadrao(
-                    aoPressionar: () {
-                      setState(() {});
-                    },
                     cor: kCorAtivaCartaoPadrao,
+                    filhoCartao: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'PESO',
+                          style: kDescricaoTextStyle,
+                        ),
+                        Text(peso.toString(), style: kNumeroTextStyle),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            BotaoArredondado(
+                              icone: FontAwesomeIcons.minus,
+                              aoPressionar: () {
+                                setState(() {
+                                  peso--;
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            BotaoArredondado(
+                              icone: FontAwesomeIcons.plus,
+                              aoPressionar: () {
+                                setState(() {
+                                  peso++;
+                                });
+                              },
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 Expanded(
                   child: CartaoPadrao(
-                    aoPressionar: () {
-                      setState(() {});
-                    },
                     cor: kCorAtivaCartaoPadrao,
+                    filhoCartao: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'IDADE',
+                          style: kDescricaoTextStyle,
+                        ),
+                        Text(
+                          idade.toString(),
+                          style: kNumeroTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            BotaoArredondado(
+                                icone: FontAwesomeIcons.minus,
+                                aoPressionar: () {
+                                  setState(() {
+                                    idade--;
+                                  });
+                                }),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            BotaoArredondado(
+                                icone: FontAwesomeIcons.plus,
+                                aoPressionar: () {
+                                  setState(() {
+                                    idade++;
+                                  });
+                                }),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -152,6 +217,24 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
           )
         ],
       ),
+    );
+  }
+}
+
+class BotaoArredondado extends StatelessWidget {
+  BotaoArredondado({required this.icone, required this.aoPressionar});
+
+  final IconData icone;
+  final aoPressionar;
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      child: Icon(icone),
+      elevation: 6.0,
+      onPressed: aoPressionar,
+      constraints: BoxConstraints.tightFor(width: 56.0, height: 56.0),
+      shape: CircleBorder(),
+      fillColor: Color(0xFF7E7E7E),
     );
   }
 }
